@@ -1,1 +1,122 @@
-<h1>hello, world</h1>
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>个人笔记</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="app">
+        <!-- 侧边栏 -->
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar-header">
+                <h1><i class="fas fa-book"></i> 笔记</h1>
+                <button class="btn-new" id="newNoteBtn">
+                    <i class="fas fa-plus"></i> 新建
+                </button>
+            </div>
+            
+            <div class="notes-list" id="notesList">
+                <!-- 笔记列表将通过JavaScript动态生成 -->
+            </div>
+        </aside>
+
+        <!-- 折叠按钮 -->
+        <div class="toggle-btn" id="toggleBtn">
+            <i class="fas fa-bars"></i>
+        </div>
+
+        <!-- 主内容区 -->
+        <main class="main-content">
+            <div class="toolbar">
+                <div class="toolbar-left">
+                    <button class="toolbar-btn" data-command="bold" title="粗体">
+                        <i class="fas fa-bold"></i>
+                    </button>
+                    <button class="toolbar-btn" data-command="italic" title="斜体">
+                        <i class="fas fa-italic"></i>
+                    </button>
+                    <button class="toolbar-btn" data-command="underline" title="下划线">
+                        <i class="fas fa-underline"></i>
+                    </button>
+                    <span class="separator"></span>
+                    <button class="toolbar-btn" data-command="h1" title="标题1">H1</button>
+                    <button class="toolbar-btn" data-command="h2" title="标题2">H2</button>
+                    <button class="toolbar-btn" data-command="h3" title="标题3">H3</button>
+                    <span class="separator"></span>
+                    <button class="toolbar-btn" data-command="insertUnorderedList" title="无序列表">
+                        <i class="fas fa-list-ul"></i>
+                    </button>
+                    <button class="toolbar-btn" data-command="insertOrderedList" title="有序列表">
+                        <i class="fas fa-list-ol"></i>
+                    </button>
+                    <span class="separator"></span>
+                    <button class="toolbar-btn" id="imageBtn" title="插入图片">
+                        <i class="fas fa-image"></i>
+                    </button>
+                    <input type="file" id="imageInput" accept="image/*" style="display: none;">
+                </div>
+                <div class="toolbar-right">
+                    <button class="btn-edit" id="editBtn">
+                        <i class="fas fa-edit"></i> 编辑
+                    </button>
+                    <button class="btn-save" id="saveBtn" style="display: none;">
+                        <i class="fas fa-save"></i> 保存
+                    </button>
+                    <button class="btn-cancel" id="cancelBtn" style="display: none;">
+                        <i class="fas fa-times"></i> 取消
+                    </button>
+                </div>
+            </div>
+
+            <div class="editor-container">
+                <!-- 预览模式 -->
+                <div class="preview-mode" id="previewMode">
+                    <!-- 目录容器 -->
+                    <div class="table-of-contents" id="tableOfContents">
+                        <div class="toc-header">
+                            <h3><i class="fas fa-list"></i> 目录</h3>
+                            <button class="toc-toggle" id="tocToggle">
+                                <i class="fas fa-chevron-down"></i>
+                            </button>
+                        </div>
+                        <div class="toc-content" id="tocContent">
+                            <!-- 目录内容将通过JavaScript动态生成 -->
+                        </div>
+                    </div>
+                    
+                    <div class="preview-content" id="previewContent">
+                        <!-- 预览内容 -->
+                    </div>
+                </div>
+                
+                <!-- 编辑模式 -->
+                <div class="edit-mode" id="editMode" style="display: none;">
+                    <div class="editor" id="editor" contenteditable="true" placeholder="开始编写你的笔记..."></div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- 新建笔记对话框 -->
+    <div class="modal" id="newNoteModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>新建笔记</h3>
+                <button class="close-btn" id="closeModal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <input type="text" id="noteTitle" placeholder="笔记标题" maxlength="50">
+            </div>
+            <div class="modal-footer">
+                <button class="btn-cancel" id="cancelBtn">取消</button>
+                <button class="btn-confirm" id="confirmBtn">创建</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html> 
